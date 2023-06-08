@@ -6,13 +6,13 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 04:27:26 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/08 05:42:03 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/08 06:25:54 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philos.h"
 
-static bool	creat_forks(t_args *args)
+bool	creat_forks(t_args *args)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ static bool	creat_forks(t_args *args)
 	return (true);
 }
 
-static bool	sit_philos(t_args *args)
+bool	sit_philos(t_args *args)
 {
 	int	i;
 

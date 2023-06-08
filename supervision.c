@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 02:27:00 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/08 05:48:08 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/08 06:20:44 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	join_n_destroy(t_args *args)
 	i = 0;
 	while (i > args->num_of_philos)
 	{
-		pthread_join(&args->philo[i].threads, NULL);
+		pthread_join(args->philo[i].threads, NULL);
 		i++;
 	}
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:02:57 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/08 05:23:38 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/08 06:19:04 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	execute_philos(t_args *args)
 	args->time_win = get_time();
 	i = -1;
 	while (++i < args->num_of_philos)
-		pthread_create(args->philo[i].threads, NULL, &routine, &args->philo[i]);
+		pthread_create(&args->philo[i].threads, NULL, &routine, &args->philo[i]);
 	supervision(args);
 	join_n_destroy(args);
 }

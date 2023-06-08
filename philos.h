@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:34:04 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/08 05:38:01 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/08 06:18:06 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef	struct s_args{
 	pthread_mutex_t *fork;
 	pthread_mutex_t	eating;
 	pthread_mutex_t	dead_validation;
-	t_philos	*philo;
+	struct	s_philos	*philo;
 }		t_args;
 
 typedef struct s_philos{
