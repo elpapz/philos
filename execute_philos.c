@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:02:57 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/08 06:19:04 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/09 04:26:23 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	deal_with_one(suseconds_t time, t_philos *philo)
 	if (philo->args->num_of_philos == 1)
 	{
 		printf("Time %ld | Philo %d has taken a fork\n", time, philo->philo_id);
-		usleep(philo->args->time_2_die * 1001);
+		usleep(philo->args->time_2_die * 1000);
+		philo->args->has_died = true;
 	}
 }
 
@@ -80,5 +81,14 @@ void	execute_philos(t_args *args)
 	while (++i < args->num_of_philos)
 		pthread_create(&args->philo[i].threads, NULL, &routine, &args->philo[i]);
 	supervision(args);
-	join_n_destroy(args);
+	usleep(args->time_2_die * 500);
+	i = 0;
+	while (i > args->num_of_philos)
+	{
+		pthread_join(args->philo[i].threads, NULL);
+		i++;
+	}
+	if (args->all_is_full == true)
+		printf("ALL THE PHILOS ARE SATISFIED\n");
+	destroy_n_clean(args);
 }

@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:30:40 by acanelas          #+#    #+#             */
-/*   Updated: 2023/05/31 20:12:16 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/09 04:10:38 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ bool	check_input(char **av)
 		i++;
 	}
 	i = 2;
-	while (av[i])
+	while (i < 5)
 	{
 		if (ft_atoi(av[i]) < 60)
 			return (false);

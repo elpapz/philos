@@ -6,7 +6,7 @@
 #    By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 23:22:59 by acanelas          #+#    #+#              #
-#    Updated: 2023/06/08 06:39:53 by acanelas         ###   ########.fr        #
+#    Updated: 2023/06/09 05:16:04 by acanelas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = check_input.c\
 
 NAME = philos
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=adress
+CFLAGS = -Wall -Wextra -Werror -pthread
 REMOVE = rm -rf
 OBF = $(SRC:.c=.o)
 

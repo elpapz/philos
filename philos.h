@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:34:04 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/08 06:18:06 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/09 04:47:29 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ typedef	struct s_args{
 	int	count_full_philos;
 	bool	all_is_full;
 	bool	has_died;
-	//bool	can_print;
 	suseconds_t	time_win;
 	pthread_mutex_t	check_died;
 	pthread_mutex_t *fork;
 	pthread_mutex_t	eating;
 	pthread_mutex_t	dead_validation;
+	pthread_mutex_t	supervisor;
 	struct	s_philos	*philo;
 }		t_args;
 
@@ -63,6 +63,6 @@ void	go_to_think(suseconds_t time, t_philos *philo);
 void	go_to_sleep(suseconds_t time, t_philos *philo);
 void	print_eating(suseconds_t time, t_philos *philo);
 void	supervision(t_args *args);
-void	join_n_destroy(t_args *args);
+void	destroy_n_clean(t_args *args);
 int	error_message();
 #endif

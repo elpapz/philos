@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 04:27:26 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/08 06:25:54 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/09 05:10:50 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ bool	creat_forks(t_args *args)
 	if (pthread_mutex_init(&args->dead_validation, NULL))
 		return (false);
 	if (pthread_mutex_init(&args->eating, NULL))
+		return (false);
+	if (pthread_mutex_init(&args->supervisor, NULL))
 		return (false);
 	return (true);
 }
