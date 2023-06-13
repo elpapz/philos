@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 04:27:26 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/09 05:10:50 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/12 23:23:47 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,18 @@ bool	creat_forks(t_args *args)
 			return (false);
 		i++;
 	}
-	if (pthread_mutex_init(&args->check_died, NULL))
+	
+	if (pthread_mutex_init(&args->print, NULL))
 		return (false);
-	if (pthread_mutex_init(&args->dead_validation, NULL))
+	/*
+	if (pthread_mutex_init(&args->routine, NULL))
 		return (false);
-	if (pthread_mutex_init(&args->eating, NULL))
+	if (pthread_mutex_init(&args->actions, NULL))
 		return (false);
-	if (pthread_mutex_init(&args->supervisor, NULL))
+	*/
+	if (pthread_mutex_init(&args->check_die, NULL))
+		return (false);
+	if (pthread_mutex_init(&args->check, NULL))
 		return (false);
 	return (true);
 }
@@ -49,8 +54,8 @@ bool	sit_philos(t_args *args)
 	{
 		args->philo[i].philo_id = i + 1;
 		args->philo[i].meals_eaten = 0;
-		args->philo[i].args = args;
 		args->philo[i].is_full = 0;
+		args->philo[i].args = args;
 		if (args->num_of_philos > 1 && i != (args->num_of_philos -1))
 		{
 			args->philo[i].lfork = i;
@@ -61,6 +66,7 @@ bool	sit_philos(t_args *args)
 			args->philo[i].lfork = 0;
 			args->philo[i].rfork = i;
 		}
+	args->philo[i].last_meal = get_time();
 	i++;
 	}
 return (true);
@@ -79,7 +85,9 @@ bool	init_args(t_args *args, char **av)
 	args->all_is_full = false;
 	args->has_died = 0;
 	args->count_full_philos = 0;
-	if (creat_forks(args) == false || sit_philos(args) == false)
+	if (creat_forks(args) == false)
+		return (false);
+	if (sit_philos(args) == false)
 		return (false);
 	return (true);
 }

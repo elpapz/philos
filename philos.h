@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:34:04 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/09 04:47:29 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:46:15 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ typedef	struct s_args{
 	bool	all_is_full;
 	bool	has_died;
 	suseconds_t	time_win;
-	pthread_mutex_t	check_died;
+	pthread_mutex_t	check_die;
+	pthread_mutex_t	check;
 	pthread_mutex_t *fork;
-	pthread_mutex_t	eating;
-	pthread_mutex_t	dead_validation;
-	pthread_mutex_t	supervisor;
+	//pthread_mutex_t	actions;
+	pthread_mutex_t	print;
+	//pthread_mutex_t	supervisor;
 	struct	s_philos	*philo;
 }		t_args;
 
