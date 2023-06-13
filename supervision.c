@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 02:27:00 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/13 01:15:40 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/13 06:16:49 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ void	destroy_n_clean(t_args *args)
 	int i;
 
 	i = 0;
-	while (i > args->num_of_philos)
+	while (i < args->num_of_philos)
 	{
-		pthread_mutex_destroy(&(args->fork[i]));
+		pthread_mutex_destroy(&args->fork[i]);
 		i++;
 	}
-	pthread_mutex_destroy(&(args->check_die));
-	pthread_mutex_destroy(&(args->check));
 	pthread_mutex_destroy(&(args->print));
+	pthread_mutex_destroy(&(args->check));
+	pthread_mutex_destroy(&(args->check_die));
 	//pthread_mutex_destroy(&(args->actions));
 	//pthread_mutex_destroy(&args->supervisor);
-	free(&args->fork);
-	free(&args->philo);
+	free(args->fork);
+	free(args->philo);
 	if (args->all_is_full == true)
 		printf("ALL PHILOS ARE SATISFIED\n");
 }

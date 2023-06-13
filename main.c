@@ -6,11 +6,12 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:29:55 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/08 06:34:26 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/13 06:18:46 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philos.h"
+
 
 int	main(int ac, char **av)
 {
@@ -30,4 +31,7 @@ int	main(int ac, char **av)
 		printf("The simulation has started\n");
 		execute_philos(&args);
 	}
+	//destroy_n_clean(&args);
+	//free(args.fork);
+	//free(args.philo);
 }
