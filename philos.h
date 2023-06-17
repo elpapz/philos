@@ -6,21 +6,22 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:34:04 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/13 06:15:17 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/17 05:26:01 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILOS_H
+# define PHILOS_H
 
-#include <stdio.h>
-#include <pthread.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/time.h>
-#include <stdbool.h>
+# include <stdio.h>
+# include <pthread.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/time.h>
+# include <stdbool.h>
 
-typedef	struct s_args{
+typedef struct s_args
+{
 	int					num_of_philos;
 	int					time_2_die;
 	int					time_2_eat;
@@ -30,14 +31,15 @@ typedef	struct s_args{
 	bool				all_is_full;
 	bool				has_died;
 	suseconds_t			time_win;
-	pthread_mutex_t		check_die;
-	pthread_mutex_t		check;
-	pthread_mutex_t 	*fork;
+	pthread_mutex_t		check_status;
+	pthread_mutex_t		dead;
+	pthread_mutex_t		*fork;
 	pthread_mutex_t		print;
-	struct	s_philos	*philo;
-}		t_args;
+	struct s_philos		*philo;
+}						t_args;
 
-typedef struct s_philos{
+typedef struct s_philos
+{
 	t_args		*args;
 	pthread_t	threads;
 	suseconds_t	last_meal;
@@ -46,8 +48,7 @@ typedef struct s_philos{
 	int			is_full;
 	int			lfork;
 	int			rfork;
-}			t_philos;
-
+}				t_philos;
 
 int			ft_atoi(char *str);
 bool		ft_isdigit(char *str);
@@ -63,5 +64,6 @@ void		go_to_sleep(suseconds_t time, t_philos *philo);
 void		print_eating(suseconds_t time, t_philos *philo);
 void		supervision(t_args *args);
 void		destroy_n_clean(t_args *args);
-int			error_message();
+int			error_message(void);
+
 #endif

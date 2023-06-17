@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 04:27:26 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/12 23:23:47 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/17 05:41:32 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,40 +17,27 @@ bool	creat_forks(t_args *args)
 	int	i;
 
 	i = 0;
-	args->fork = malloc(sizeof(pthread_mutex_t) * args->num_of_philos);
-	if (!args->fork)
-		return(false);
 	while (args->num_of_philos > i)
 	{
 		if (pthread_mutex_init(&args->fork[i], NULL))
 			return (false);
 		i++;
 	}
-	
 	if (pthread_mutex_init(&args->print, NULL))
 		return (false);
-	/*
-	if (pthread_mutex_init(&args->routine, NULL))
+	if (pthread_mutex_init(&args->check_status, NULL))
 		return (false);
-	if (pthread_mutex_init(&args->actions, NULL))
-		return (false);
-	*/
-	if (pthread_mutex_init(&args->check_die, NULL))
-		return (false);
-	if (pthread_mutex_init(&args->check, NULL))
+	if (pthread_mutex_init(&args->dead, NULL))
 		return (false);
 	return (true);
 }
 
-bool	sit_philos(t_args *args)
+void	sit_philos(t_args *args)
 {
 	int	i;
 
-	i = 0;
-	args->philo = malloc(sizeof(t_philos) * args->num_of_philos);
-	if (!args->philo)
-		return (false);
-	while (i < args->num_of_philos)
+	i = -1;
+	while (++i < args->num_of_philos)
 	{
 		args->philo[i].philo_id = i + 1;
 		args->philo[i].meals_eaten = 0;
@@ -67,9 +54,36 @@ bool	sit_philos(t_args *args)
 			args->philo[i].rfork = i;
 		}
 	args->philo[i].last_meal = get_time();
-	i++;
 	}
-return (true);
+}
+
+bool	was_created(t_args *args)
+{
+	if (creat_forks(args) == true)
+	{
+		sit_philos(args);
+		return (true);
+	}
+	else
+	{
+		free(args->philo);
+		free(args->fork);
+	}
+	return (false);
+}
+
+bool	dynamic_allocs(t_args *args)
+{
+	args->fork = malloc(sizeof(pthread_mutex_t) * args->num_of_philos);
+	if (!args->fork)
+		return (false);
+	args->philo = malloc(sizeof(t_philos) * args->num_of_philos);
+	if (!args->philo)
+	{
+		free(args->fork);
+		return (false);
+	}
+	return (true);
 }
 
 bool	init_args(t_args *args, char **av)
@@ -85,9 +99,13 @@ bool	init_args(t_args *args, char **av)
 	args->all_is_full = false;
 	args->has_died = 0;
 	args->count_full_philos = 0;
-	if (creat_forks(args) == false)
+	if (dynamic_allocs(args) == true)
+	{
+		if (was_created(args) == true)
+			return (true);
+		else
+			return (false);
+	}
+	else
 		return (false);
-	if (sit_philos(args) == false)
-		return (false);
-	return (true);
 }

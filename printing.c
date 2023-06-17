@@ -6,13 +6,13 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:07:46 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/13 00:59:24 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/17 04:23:35 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philos.h"
 
-int	error_message()
+int	error_message(void)
 {
 	printf("Must have at least 5 args\n");
 	printf("The args must be only composed by numbers\n");
@@ -25,48 +25,48 @@ int	error_message()
 
 void	print_eating(suseconds_t time, t_philos *philo)
 {
-	pthread_mutex_lock(&philo->args->check_die);
+	pthread_mutex_lock(&philo->args->check_status);
 	if (!philo->args->has_died && !philo->args->all_is_full)
 	{
 		printf("Time %ld | Philo %d has taken a fork\n", time, philo->philo_id);
 		printf("Time %ld | Philo %d has taken a fork\n", time, philo->philo_id);
 		printf("Time %ld | Philo %d is eating \n", time, philo->philo_id);
-		pthread_mutex_unlock(&philo->args->check_die);
+		pthread_mutex_unlock(&philo->args->check_status);
 	}
 	else
 	{
-		pthread_mutex_unlock(&philo->args->check_die);
+		pthread_mutex_unlock(&philo->args->check_status);
 		return ;
 	}
 }
 
 void	go_to_sleep(suseconds_t time, t_philos *philo)
 {
-	pthread_mutex_lock(&philo->args->check_die);
+	pthread_mutex_lock(&philo->args->check_status);
 	if (!philo->args->has_died && !philo->args->all_is_full)
 	{
 		printf("Time %ld | Philo %d is sleeping\n", time, philo->philo_id);
-		pthread_mutex_unlock(&philo->args->check_die);
+		pthread_mutex_unlock(&philo->args->check_status);
 		usleep(philo->args->time_2_sleep * 1000);
 	}
 	else
 	{
-		pthread_mutex_unlock(&philo->args->check_die);
+		pthread_mutex_unlock(&philo->args->check_status);
 		return ;
 	}
 }
 
 void	go_to_think(suseconds_t time, t_philos *philo)
 {
-	pthread_mutex_lock(&philo->args->check_die);
+	pthread_mutex_lock(&philo->args->check_status);
 	if (!philo->args->has_died && !philo->args->all_is_full)
 	{
 		printf("Time %ld | Philo %d is thinking\n", time, philo->philo_id);
-		pthread_mutex_unlock(&philo->args->check_die);
+		pthread_mutex_unlock(&philo->args->check_status);
 	}
 	else
 	{
-		pthread_mutex_unlock(&philo->args->check_die);
+		pthread_mutex_unlock(&philo->args->check_status);
 		return ;
 	}
 }

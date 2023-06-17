@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:30:40 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/09 04:10:38 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/06/17 05:44:07 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ bool	ft_isdigit(char *str)
 		else
 			return (false);
 	}
-return (true);
+	return (true);
 }
 
 bool	check_input(char **av)
 {
 	int	i;
-	
+
 	i = 1;
 	while (av[i])
 	{
