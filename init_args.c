@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 04:27:26 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/17 05:41:32 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:27:55 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	sit_philos(t_args *args)
 			args->philo[i].lfork = 0;
 			args->philo[i].rfork = i;
 		}
-	args->philo[i].last_meal = get_time();
+		args->philo[i].last_meal = get_time();
 	}
 }
 

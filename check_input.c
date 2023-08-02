@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:30:40 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/17 05:44:07 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:27:35 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	ft_atoi(char *str)
 	r = 0;
 	s = 1;
 	while ((str[a] >= 9 && str[a] <= 13) || (str[a] == 32))
-	a++;
+		a++;
 	if (str[a] == '-')
 	{
 		s = -1;
 		a++;
 	}
 	else if (str[a] == '+')
-	a++;
+		a++;
 	while (str[a] && str[a] >= '0' && str[a] <= '9')
 	{
 		r = r * 10 + (str[a] - '0');

@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:29:55 by acanelas          #+#    #+#             */
-/*   Updated: 2023/06/17 04:22:00 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:24:56 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@ int	main(int ac, char **av)
 
 	if ((ac != 5 && ac != 6) || check_input(av) == false)
 	{
-		printf("depois do check\n");
 		return (error_message());
 	}
 	if (!init_args(&args, av))
 	{
-		printf("no init\n");
 		return (error_message());
 	}
 	else
